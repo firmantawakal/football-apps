@@ -16,14 +16,15 @@
             <div class="auth-form-wrapper px-4 py-5">
               <a href="#" class="noble-ui-logo d-block mb-2">LTS<span> Madiun</span></a>
               <h5 class="text-muted fw-normal mb-4">Selamat Datang! Silahkan Login.</h5>
-              <form class="forms-sample">
+              <form action="{{route('actionlogin')}}" method="post" class="forms-sample">
+                @csrf
                 <div class="mb-3">
-                  <label for="userEmail" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="userEmail" placeholder="Email">
+                  <label for="userEmail" class="form-label">Email</label>
+                  <input type="email" name="email" class="form-control" id="userEmail" placeholder="Email">
                 </div>
                 <div class="mb-3">
                   <label for="userPassword" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="userPassword" autocomplete="current-password" placeholder="Password">
+                  <input type="password" class="form-control" id="userPassword" name="password" autocomplete="current-password" placeholder="Password">
                 </div>
                 {{-- <div class="form-check mb-3">
                   <input type="checkbox" class="form-check-input" id="authCheck">
@@ -32,7 +33,7 @@
                   </label>
                 </div> --}}
                 <div>
-                  <a href="{{ url('/') }}" class="btn btn-primary me-2 mb-2 mb-md-0">Login</a>
+                  <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0">Login</button>
                   {{-- <button type="button" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
                     <i class="btn-icon-prepend" data-feather="twitter"></i>
                     Login with twitter

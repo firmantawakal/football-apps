@@ -26,9 +26,9 @@ Route::get('jadwal', [FrontController::class, 'jadwal'])->name('jadwal');
 Route::get('hasil', [FrontController::class, 'hasil'])->name('hasil');
 
 Route::get('admin', [LoginController::class, 'login'])->name('login');
+Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
 
 Route::prefix('admin')->group(function () {
-    Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
     Route:: resource('user', '\App\Http\Controllers\UserController')->middleware('role:admin');
 
     Route::middleware(['auth'])->group(function () {
