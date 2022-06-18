@@ -13,7 +13,7 @@ class LoginController extends Controller
         if (Auth::check()) {
             return redirect('home');
         }else{
-            return view('pages.auth.login');
+            return view('admin.login');
         }
     }
 
@@ -30,13 +30,13 @@ class LoginController extends Controller
             return redirect('admin/home');
         }else{
             Session::flash('error', 'Email atau Password Salah');
-            return redirect('login');
+            return redirect('admin');
         }
     }
 
     public function actionlogout()
     {
         Auth::logout();
-        return redirect('login');
+        return redirect('admin');
     }
 }

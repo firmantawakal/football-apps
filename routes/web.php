@@ -8,6 +8,8 @@ use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\FrontController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +20,9 @@ use App\Http\Controllers\PostController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [FrontController::class, 'index'])->name('index');
+Route::get('klasemen', [FrontController::class, 'klasemen'])->name('klasemen');
+Route::get('jadwal', [FrontController::class, 'jadwal'])->name('jadwal');
 
 Route::get('admin', [LoginController::class, 'login'])->name('login');
 
@@ -26,33 +31,38 @@ Route::prefix('admin')->group(function () {
     Route:: resource('user', '\App\Http\Controllers\UserController')->middleware('role:admin');
 
     Route::middleware(['auth'])->group(function () {
-        Route::get('home', [HomeController::class, 'index'])->name('home');
-        Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout');
+        Route:: resource('user', '\App\Http\Controllers\UserController')->middleware('role:admin');
+        Route:: get('user/unarchive/{id}', [UserController::class, 'unarchive'])->name('user.unarchive')->middleware('role:admin');
 
-        Route::resource('club', ClubController::class);
-        Route::get('club/detail/{id}', [ClubController::class, 'detail'])->name('club.detail');
+        Route::group(["middleware" => "role:admin,author"], function() {
+            Route::get('home', [HomeController::class, 'index'])->name('home');
+            Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout');
 
-        Route::resource('player', PlayerController::class);
-        Route::get('player/destroy/{id}', [PlayerController::class, 'destroy'])->name('player.delete');
+            Route::resource('club', ClubController::class);
+            Route::get('club/detail/{id}', [ClubController::class, 'detail'])->name('club.detail');
 
-        Route:: resource('tag', '\App\Http\Controllers\TagController');
-        Route:: get('tag/unarchive/{id}', [TagController::class, 'unarchive'])->name('tag.unarchive');
+            Route::resource('player', PlayerController::class);
+            Route::get('player/destroy/{id}', [PlayerController::class, 'destroy'])->name('player.delete');
 
-        Route:: resource('post', '\App\Http\Controllers\PostController');
-        Route:: get('post/unarchive/{id}', [PostController::class, 'unarchive'])->name('post.unarchive');
-        Route:: get('post/delete_images/{id}', [PostController::class, 'delete_images'])->name('post.delete_images');
+            Route:: resource('tag', '\App\Http\Controllers\TagController');
+            Route:: get('tag/unarchive/{id}', [TagController::class, 'unarchive'])->name('tag.unarchive');
 
-        Route:: resource('category', '\App\Http\Controllers\CategoryController');
-        Route:: get('category/unarchive/{id}', [CategoryController::class, 'unarchive'])->name('category.unarchive');
+            Route:: resource('post', '\App\Http\Controllers\PostController');
+            Route:: get('post/unarchive/{id}', [PostController::class, 'unarchive'])->name('post.unarchive');
+            Route:: get('post/delete_images/{id}', [PostController::class, 'delete_images'])->name('post.delete_images');
 
-        Route:: resource('season', '\App\Http\Controllers\SeasonController');
+            Route:: resource('category', '\App\Http\Controllers\CategoryController');
+            Route:: get('category/unarchive/{id}', [CategoryController::class, 'unarchive'])->name('category.unarchive');
 
-        Route::get('schedule/{id_season?}', [ScheduleController::class, 'index'])->name('schedule');
-        Route::post('schedule', [ScheduleController::class, 'store'])->name('schedule.store');
-        Route::get('schedule/scorer/{id_schedule}', [ScheduleController::class, 'scorer'])->name('schedule.scorer');
-        Route::post('schedule/scorer_store', [ScheduleController::class, 'scorer_store'])->name('schedule.scorer_store');
-        Route::post('schedule/scorer_destroy', [ScheduleController::class, 'scorer_destroy'])->name('schedule.scorer_destroy');
-        Route::post('schedule/finish', [ScheduleController::class, 'finish'])->name('schedule.finish');
+            Route:: resource('season', '\App\Http\Controllers\SeasonController');
+
+            Route::get('schedule/{id_season?}', [ScheduleController::class, 'index'])->name('schedule');
+            Route::post('schedule', [ScheduleController::class, 'store'])->name('schedule.store');
+            Route::get('schedule/scorer/{id_schedule}', [ScheduleController::class, 'scorer'])->name('schedule.scorer');
+            Route::post('schedule/scorer_store', [ScheduleController::class, 'scorer_store'])->name('schedule.scorer_store');
+            Route::post('schedule/scorer_destroy', [ScheduleController::class, 'scorer_destroy'])->name('schedule.scorer_destroy');
+            Route::post('schedule/finish', [ScheduleController::class, 'finish'])->name('schedule.finish');
+        });
     });
 });
 

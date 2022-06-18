@@ -18,6 +18,12 @@
           <span class="link-title">Dashboard</span>
         </a>
       </li>
+      <li class="nav-item {{ active_class(['admin/season']) }}">
+        <a href="{{ url('admin/season') }}" class="nav-link">
+          <i class="link-icon" data-feather="codepen"></i>
+          <span class="link-title">Musim</span>
+        </a>
+      </li>
       <li class="nav-item {{ active_class(['admin/club']) }}">
         <a href="{{ url('admin/club') }}" class="nav-link">
           <i class="link-icon" data-feather="shield"></i>
@@ -42,10 +48,10 @@
           <span class="link-title">Kategori Post</span>
         </a>
       </li>
-      <li class="nav-item {{ active_class(['admin/season']) }}">
-        <a href="{{ url('admin/season') }}" class="nav-link">
-          <i class="link-icon" data-feather="codepen"></i>
-          <span class="link-title">Musim</span>
+      <li class="nav-item {{ active_class(['admin/user']) }}" @if (Auth::user()->role=='author')style="display:none;" @endif>
+        <a href="{{ url('admin/user') }}" class="nav-link">
+          <i class="link-icon" data-feather="user"></i>
+          <span class="link-title">User</span>
         </a>
       </li>
     </ul>

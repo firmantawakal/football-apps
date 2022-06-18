@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="description" content="Aplikasi klasemen sepakbola">
+    <meta name="description" content="Website liga top skor Madiun">
 	<meta name="author" content="Kodeva Media">
-	<meta name="keywords" content="football apps, klasemen, jadwal pertandingan, sepakbola">
+	<meta name="keywords" content="lts, football, league, liga, madiun, sepakbola, bolakaki, klasemen, top skor, jadwal, pertandingan">
 
-  <title>Football Apps</title>
+  <title>LTS Madiun</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
