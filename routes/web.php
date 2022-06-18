@@ -23,6 +23,7 @@ use App\Http\Controllers\FrontController;
 Route::get('/', [FrontController::class, 'index'])->name('index');
 Route::get('klasemen', [FrontController::class, 'klasemen'])->name('klasemen');
 Route::get('jadwal', [FrontController::class, 'jadwal'])->name('jadwal');
+Route::get('hasil', [FrontController::class, 'hasil'])->name('hasil');
 
 Route::get('admin', [LoginController::class, 'login'])->name('login');
 

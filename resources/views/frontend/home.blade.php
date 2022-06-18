@@ -481,7 +481,7 @@
                                                 href="{{url('jadwal')}}"
                                                 style="font-size: 15px ;font-weight: 600 ;letter-spacing: 0px ;color: #ffffff ;padding: 14px 33px 17px 33px;text-transform: none ;border-radius: 0px;-moz-border-radius: 0px;-webkit-border-radius: 0px;background: #0054a6 ;"><i
                                                     class="gdlr-core-pos-left fa fa-eye"
-                                                    style="font-size: 17px ;"></i><span class="gdlr-core-content">View Schedule</span></a></div>
+                                                    style="font-size: 17px ;"></i><span class="gdlr-core-content">Lihat Jadwal</span></a></div>
                                     </div>
                                 </div>
                             </div>
@@ -510,10 +510,10 @@
                                                                                 srcset="{{ url('/image/club/' . $fin->image_a) }} 30w, {{ url('/image/club/' . $fin->image_a) }} 110w"
                                                                                 sizes="(max-width: 30px) 100vw, 30px"></span><span
                                                                             class="bigslam-sp-team-name">{{$fin->club_a}}</span>
-                                                                    </div><span class="bigslam-sp-event-result"><a
-                                                                            href="event/juventus-vs-man-utd/index.htm">{{$fin->score_a}}<span
-                                                                                class="bigslam-sp-event-result-sep"> -
-                                                                            </span>{{ url('/image/club/' . $sch2->image_a) }}</a>
+                                                                    </div>
+                                                                    <span class="bigslam-sp-event-result">
+                                                                        <a href="event/juventus-vs-man-utd/index.htm">{{$fin->score_a}}<span class="bigslam-sp-event-result-sep"> -
+                                                                            </span>{{$fin->score_b}}</a>
                                                                     </span>
                                                                     <div class="bigslam-sp-event-widget-title-right"><span
                                                                             class="bigslam-sp-team-logo"><img
@@ -523,12 +523,12 @@
                                                                                 alt=""
                                                                                 srcset="{{ url('/image/club/' . $fin->image_b) }} 26w, /front/upload/flag-12-105x128.png 105w, {{ url('/image/club/' . $fin->image_b) }} 120w"
                                                                                 sizes="(max-width: 26px) 100vw, 26px"></span><span
-                                                                            class="bigslam-sp-team-name"> {{$fin->club_a}} </span>
+                                                                            class="bigslam-sp-team-name"> {{$fin->club_b}} </span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="bigslam-sp-event-widget-info"><span
                                                                         class="bigslam-sp-event-date">{{dateIndo($fin->time)}}
-                                                                        </span><span class="bigslam-sp-event-venue">{{$stadium_a}}</span>
+                                                                        </span><span class="bigslam-sp-event-venue">{{$fin->stadium_a}}</span>
                                                                 </div>
                                                             </div>
                                                             @endforeach
@@ -542,7 +542,7 @@
                                         <div
                                             class="gdlr-core-button-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-center-align">
                                             <a class="gdlr-core-button  gdlr-core-button-transparent gdlr-core-button-no-border"
-                                                href="{{url('klasemen')}}" id="gdlr-core-button-id-41923"><span
+                                                href="{{url('hasil')}}" id="gdlr-core-button-id-41923"><span
                                                     class="gdlr-core-content">Lihat Semua Hasil Pertandingan</span><i
                                                     class="gdlr-core-pos-right fa fa-long-arrow-right"></i></a>
                                         </div>
@@ -580,39 +580,36 @@
                                                         class="bigslam-sp-event-featured-title bigslam-title-font clearfix">
                                                         <div class="bigslam-sp-event-featured-title-left"><span
                                                                 class="bigslam-sp-team-logo"><img width="90"
-                                                                    height="80" src="/front/upload/flag-20.png"
+                                                                    height="80" src="{{ url('/image/club/' . $fin->image_a) }}"
                                                                     class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image"
                                                                     alt=""
-                                                                    srcset="/front/upload/flag-20.png 90w, /front/upload/flag-20-32x28.png 32w"
+                                                                    srcset="{{ url('/image/club/' . $fin->image_a) }} 90w, {{ url('/image/club/' . $fin->image_a) }} 32w"
                                                                     sizes="(max-width: 90px) 100vw, 90px"></span><span
                                                                 class="bigslam-sp-team-name"
-                                                                style="font-size: 32px  !important;font-weight: 400  !important;text-transform: none  !important;margin-top: 30px  !important;">Napoli</span>
+                                                                style="font-size: 32px  !important;font-weight: 400  !important;text-transform: none  !important;margin-top: 30px  !important;">{{$last_finish->club_a}}</span>
                                                         </div><span class="bigslam-sp-event-result"
                                                             style="margin-top: 0px  !important;"><a
                                                                 class="gdlr-core-skin-title-important"
-                                                                href="#">2<span class="bigslam-sp-event-result-sep">
-                                                                    - </span>0</a>
+                                                                href="#">{{$last_finish->score_a}}<span class="bigslam-sp-event-result-sep">
+                                                                    - </span>{{$last_finish->score_b}}</a>
                                                         </span>
                                                         <div class="bigslam-sp-event-featured-title-right"><span
                                                                 class="bigslam-sp-team-logo"><img width="110"
-                                                                    height="119" src="/front/upload/flag-4.png"
+                                                                    height="119" src="{{ url('/image/club/' . $fin->image_b) }}"
                                                                     class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image"
                                                                     alt=""
-                                                                    srcset="/front/upload/flag-4.png 110w, /front/upload/flag-4-30x32.png 30w"
+                                                                    srcset="{{ url('/image/club/' . $fin->image_b) }} 110w, {{ url('/image/club/' . $fin->image_b) }} 30w"
                                                                     sizes="(max-width: 110px) 100vw, 110px"></span><span
                                                                 class="bigslam-sp-team-name"
-                                                                style="font-size: 32px  !important;font-weight: 400  !important;text-transform: none  !important;margin-top: 30px  !important;">Juventus</span>
+                                                                style="font-size: 32px  !important;font-weight: 400  !important;text-transform: none  !important;margin-top: 30px  !important;">{{$last_finish->club_b}}</span>
                                                         </div>
                                                     </div>
-                                                    <div class="bigslam-sp-event-featured-info"><span
-                                                            class="bigslam-sp-event-date">August 7, 2019</span><span
-                                                            class="bigslam-sp-event-venue"><a href="#"
-                                                                rel="tag">San Paolo Stadium</a></span></div>
-                                                    <div class="bigslam-sp-event-featured-link"><a
-                                                            class="gdlr-core-button gdlr-core-rectangle  seocrawler-solid"
-                                                            href="#"
-                                                            style="border-radius: 30px;-moz-border-radius: 30px;-webkit-border-radius: 30px;">Game
-                                                            Info</a></div>
+                                                    <div class="bigslam-sp-event-featured-info">
+                                                        <span class="bigslam-sp-event-date">{{dateIndo($fin->time)}}</span>
+                                                        <span class="bigslam-sp-event-venue">
+                                                            {{$last_finish->stadium_a}}
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

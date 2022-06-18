@@ -58,11 +58,31 @@ class FrontController extends Controller
                             'b.coach as coach_b',
                             'schedule.*','season.*')->get();
 
-        return view('frontend.home', compact('all_schedule', 'all_finish'));
+        $last_finish = Schedule::
+                        leftJoin('club AS a', 'schedule.id_club_a', '=', 'a.id')
+                        ->leftJoin('club AS b', 'schedule.id_club_b', '=', 'b.id')
+                        ->join('season', 'schedule.id_season', '=', 'season.id')
+                        ->where('season.id',$isActiveSeason->id)
+                        ->where('isFinish',1)
+                        ->limit(1)
+                        ->orderBy('time','DESC')
+                        ->select(
+                            'a.club_name as club_a',
+                            'b.club_name as club_b',
+                            'a.image as image_a',
+                            'b.image as image_b',
+                            'a.stadium as stadium_a',
+                            'b.stadium as stadium_b',
+                            'a.coach as coach_a',
+                            'b.coach as coach_b',
+                            'schedule.*','season.*')->first();
+
+        return view('frontend.home', compact('all_schedule', 'all_finish','last_finish'));
     }
 
     public function jadwal()
     {
+        $isActiveSeason = DB::table('season')->where('isActive',1)->first();
         $all_schedule = Schedule::
                     leftJoin('club AS a', 'schedule.id_club_a', '=', 'a.id')
                     ->leftJoin('club AS b', 'schedule.id_club_b', '=', 'b.id')
@@ -82,6 +102,30 @@ class FrontController extends Controller
                         'schedule.*','season.*')->get();
 
         return view('frontend.jadwal', compact('all_schedule'));
+    }
+
+    public function hasil()
+    {
+        $isActiveSeason = DB::table('season')->where('isActive',1)->first();
+        $all_schedule = Schedule::
+                    leftJoin('club AS a', 'schedule.id_club_a', '=', 'a.id')
+                    ->leftJoin('club AS b', 'schedule.id_club_b', '=', 'b.id')
+                    ->join('season', 'schedule.id_season', '=', 'season.id')
+                    ->where('season.id',$isActiveSeason->id)
+                    ->where('isFinish',1)
+                    ->orderBy('time','DESC')
+                    ->select(
+                        'a.club_name as club_a',
+                        'b.club_name as club_b',
+                        'a.image as image_a',
+                        'b.image as image_b',
+                        'a.stadium as stadium_a',
+                        'b.stadium as stadium_b',
+                        'a.coach as coach_a',
+                        'b.coach as coach_b',
+                        'schedule.*','season.*')->get();
+
+        return view('frontend.hasil', compact('all_schedule'));
     }
 
     public function klasemen()

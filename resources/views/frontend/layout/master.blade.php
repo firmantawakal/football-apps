@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Big Slam &#8211; Sport Club HTML Template</title>
+    <title>LTS Madiun</title>
 
     <link rel='stylesheet' href={{ asset('front/plugins/goodlayers-core/plugins/fontawesome/font-awesome.css') }}
         type='text/css' media='all'>
